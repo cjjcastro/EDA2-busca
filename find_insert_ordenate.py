@@ -1,3 +1,4 @@
+""" Python version 3.6.3 """
 from random import randint
 import os
 max_len = 100
