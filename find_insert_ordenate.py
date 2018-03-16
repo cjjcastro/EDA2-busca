@@ -26,7 +26,6 @@ def search_binary(list_db,number):
         find = int((begin + end) / 2)
         #print("Number: {} Find: {}".format(number,list_db[find]))
         if list_db[find] == number:
-            print("encontrei")
             return find;
         if list_db[find] < number:
             begin = find + 1
@@ -46,19 +45,21 @@ def choise(answer,list_db):
     if answer == 0:
         print("Good bye!!")
 
-	if answer == 1:
+    if answer == 1:
         print("Unsorted list :\n {}".format(list_db))
-        print("\n\n\n")
+
     if answer == 2:
         insertion_sort(list_db)
         print("Sorted list :\n {}".format(list_db))
-        print("\n\n\n")
+
     if answer == 3:
         print("Write a number of your choise!\n")
         ans_1 = int(input())
         ans_2 = search_binary(list_db,ans_1)
+
         if ans_2 != -1:
             print("Found: {}\n".format(list_db[ans_2]))
+
         else:
             print("Don't find anything\n")
 
@@ -70,24 +71,25 @@ def choise(answer,list_db):
 
 
 
-if __init__ == "__main__":
+if __name__ == "__main__":
 
-path = os.path.dirname(os.path.abspath(__file__))
-new_path = os.path.join(path,"db.txt")
+    path = os.path.dirname(os.path.abspath(__file__))
+    new_path = os.path.join(path,"db.txt")
 
-if os.stat(new_path).st_size == 0 :
-    db = open("db.txt","w+")
-    for count in range(0,max_len):
-        number = randint(0,99999)
-        db.write("%d \n" %(number))
-    db.close()
+    if os.stat(new_path).st_size == 0 :
+        db = open("db.txt","w+")
+        for count in range(0,max_len):
+            number = randint(0,99999)
+            db.write("%d \n" %(number))
+        db.close()
 
-db = open("db.txt","r")
-list_db = init_list(db)
-
-while ans > 0:
-    print("Choose one of choises bellow:\n1-Print unorder list.\n2- Print order list.\n3-Find a number.\n4- Print list index\n0- getout here.")
-    answer = input()
-    choise(answer,list_db)
-    input()
-    os.system("clear")
+    db = open("db.txt","r")
+    list_db = init_list(db)
+    answer = 10
+    while answer > 0:
+        print("Choose one of choises bellow:\n1-Print unorder list.\n2-Print order list.\n3-Find a number.\n4-Print list index\n0-Getout here.")
+        answer = int(input())
+        choise(answer,list_db)
+        print("Click on enter for continue !!")
+        input()
+        os.system("clear")
