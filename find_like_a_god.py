@@ -117,5 +117,7 @@ if __name__ == "__main__":
         print("Choose one of choises bellow:\n1-Print unorder list.\n2-Print order list.\n3-Find a number.\n4-Mix search\n0-Getout here.")
         answer = int(input())
         choise(answer,list_db)
-        time.sleep(3)
+        print("Press enter to continue!!!")
+        input()
+        #time.sleep(3)
         os.system("clear")
