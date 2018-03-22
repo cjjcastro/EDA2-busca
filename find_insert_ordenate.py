@@ -16,8 +16,12 @@ def insertion_sort(list_db = []):
 
 def index_list(list_db = []):
     list_index=[]
-    index = [index for index in range(0,max_len,10)]
+    index = [index for index in range(0,len(list_db),10)]
     list_values = [list_db[code] for code in index]
+    
+    list_values.append(list_db[len(list_db)-1])
+    index.append(len(list_db))
+
     return list_values , index
 
 def search_binary(list_db,number):
@@ -43,8 +47,6 @@ def init_list(db):
 
 def search(list_db, number):
     list_values,list_index= index_list(list_db)
-    list_values.append(list_db[len(list_db)-1])
-    list_index.append(len(list_db)-1)
     
     min = -1
     max = -1
@@ -54,10 +56,13 @@ def search(list_db, number):
         if(list_values[i] <= number and list_values[i+1] > number):
             min = i
             max = i+1
+        if(i+1 == len(list_values)-1) and (list_values[i] < number and list_values[i+1] >= number):
+            min = i
+            max = i+1
         i += 1
     if(min == -1 and max == -1):
         return -1
-
+    
     return search_binary(list_db[list_index[min]:list_index[max]], number) + list_index[min]
 
 def choise(answer,list_db):
