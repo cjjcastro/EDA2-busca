@@ -4,23 +4,14 @@ import os
 import time
 max_len = 100
 
-
-def sequencial_search(num_search,list_num):
-    count = 0
-    for item in list_num:
-        if item[0] == num_search or item[0] > num_search:
-            return item[1],list_num[count-1][1]
-        count+=1
-    return -1
-
 def mix_search(list_db,num_search):
     insertion_sort(list_db)
     list_index = index_list(list_db)
-    end,begin = sequencial_search(num_search,list_index)
+    end , begin = sequencial_search(num_search,list_index)
     print("end: {} begin: {}".format(end,begin))
     if not(end or begin):
         return -1
-    number = search_binary(list_db,num_search,begin,end)
+    number = search_binary(list_db , num_search, begin, end)
     return number
 
 def insertion_sort(list_db = []):
@@ -39,8 +30,18 @@ def index_list(list_db = []):
     index = [index-1 for index in range(0,max_len,10)]
     index[0]+=1
     list_values = [list_db[code] for code in index]
-    list_values = zip(list_values,index)
+    list_values = list(zip(list_values,index))
     return list_values
+
+def sequencial_search(num_search,list_num):
+    count = 0
+    for item in list_num:
+        if item[0] == num_search or item[0] > num_search:
+            print("item: {}".format(item[1]))
+            print("list_num: {}".format(list_num[count-1][1]))
+            return item[1] , list_num[count-1][1]
+        count+=1
+    return -1,-1
 
 def search_binary(list_db,number,begin = 0,end = max_len -1):
     while begin <= end :
@@ -51,7 +52,7 @@ def search_binary(list_db,number,begin = 0,end = max_len -1):
             begin = find + 1
         else:
             end = find - 1
-    return -1,-1
+    return -1
 
 def init_list(db):
     list_db = []
