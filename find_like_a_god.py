@@ -2,6 +2,7 @@
 from random import randint
 import os
 import time
+import timeit
 max_len = 100
 
 def mix_search(list_db,num_search):
@@ -28,7 +29,9 @@ def insertion_sort(list_db = []):
 def index_list(list_db = []):
     list_index=[]
     index = [index-1 for index in range(0,max_len,10)]
+    index.append(max_len-1)
     index[0]+=1
+    print(index)
     list_values = [list_db[code] for code in index]
     list_values = list(zip(list_values,index))
     return list_values
@@ -37,8 +40,6 @@ def sequencial_search(num_search,list_num):
     count = 0
     for item in list_num:
         if item[0] == num_search or item[0] > num_search:
-            print("item: {}".format(item[1]))
-            print("list_num: {}".format(list_num[count-1][1]))
             return item[1] , list_num[count-1][1]
         count+=1
     return -1,-1
@@ -76,10 +77,11 @@ def choise(answer,list_db):
     if answer == 3:
         print("Write a number of your choise!\n")
         ans_1 = int(input())
+        tic = timeit.default_timer()
         ans_2 = search_binary(list_db,ans_1)
-
+        toc = timeit.default_timer()
         if ans_2 != -1:
-            print("Found: {}\n".format(list_db[ans_2]))
+            print("Found: {} in time: {}".format(list_db[ans_2],toc-tic))
 
         else:
             print("Don't find anything\n")
@@ -87,10 +89,11 @@ def choise(answer,list_db):
     if answer == 4:
         print("Write a number of your choise!\n")
         ans_1 = int(input())
+        tic = timeit.default_timer()
         ans_2 = mix_search(list_db,ans_1)
-
+        toc = timeit.default_timer()
         if ans_2 != -1:
-            print("Found: {}\n".format(list_db[ans_2]))
+            print("Found: {} in time: {}".format(list_db[ans_2],toc-tic))
 
         else:
             print("Don't find anything\n")
@@ -118,6 +121,6 @@ if __name__ == "__main__":
         answer = int(input())
         choise(answer,list_db)
         print("Press enter to continue!!!")
-        input()
+        raw_input()
         #time.sleep(3)
         os.system("clear")
