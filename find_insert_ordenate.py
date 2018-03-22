@@ -22,12 +22,12 @@ def index_list(list_db = []):
 
 def search_binary(list_db,number):
     begin = 0
-    end = max_len - 1
+    end = len(list_db) - 1
     while begin <= end :
         find = int((begin + end) / 2)
         #print("Number: {} Find: {}".format(number,list_db[find]))
         if list_db[find] == number:
-            return find;
+            return find
         if list_db[find] < number:
             begin = find + 1
         else:
@@ -41,6 +41,24 @@ def init_list(db):
     db.close()
     return list_db
 
+def search(list_db, number):
+    list_values,list_index= index_list(list_db)
+    list_values.append(list_db[len(list_db)-1])
+    list_index.append(len(list_db)-1)
+    
+    min = -1
+    max = -1
+    i = 0
+
+    while(i < len(list_index)-1):
+        if(list_values[i] <= number and list_values[i+1] > number):
+            min = i
+            max = i+1
+        i += 1
+    if(min == -1 and max == -1):
+        return -1
+
+    return search_binary(list_db[list_index[min]:list_index[max]], number) + list_index[min]
 
 def choise(answer,list_db):
     if answer == 0:
@@ -56,7 +74,7 @@ def choise(answer,list_db):
     if answer == 3:
         print("Write a number of your choise!\n")
         ans_1 = int(input())
-        ans_2 = search_binary(list_db,ans_1)
+        ans_2 = search(list_db,ans_1)
 
         if ans_2 != -1:
             print("Found: {}\n".format(list_db[ans_2]))
