@@ -1,7 +1,7 @@
 # EDA2- busca e ordenação
 
-nome | matrícula
-cleber josé de Castro Júnior | 16/0025834
+| nome | matrícula |
+| Cleber José de Castro Júnior | 16/0025834 |
 
 <h3>Algoritimo de busca:</h3>
   <p>Nosso algoritimo de busca terá uma lista auxiliar de indexs que serão usados para futuramente fazer a busca binária em um
