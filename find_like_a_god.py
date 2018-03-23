@@ -1,4 +1,4 @@
-""" Python version 3.6.3 """
+""" Python version 2 """
 from random import randint
 import os
 import time
