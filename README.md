@@ -1,7 +1,7 @@
 # EDA2- busca e ordenação
 
---| nome | matrícula
--|-|-
+nome | matrícula
+-|-
 Cleber José de Castro Júnior | 16/0025834
 
 <h3>Algoritimo de busca:</h3>
